@@ -1,0 +1,29 @@
+<div class="wrapper">
+    <div class="sidebar" [ngClass]="{'superAdmin':loggedData.role == 'Super Admin',
+    'employee':loggedData.role == 'Employee',
+    'adminEmployee':loggedData.role == 'Admin Department Employee',
+    'deptHead':loggedData.role == 'Department Head'}">
+        <h2>tickets</h2>
+        <ul>
+            <li routerLink="/dashboard"><a >  Dashboard</a></li>
+            <li *ngIf="loggedData.role == 'Super Admin'" routerLink="/employee"><a > Employee</a></li>
+            <li *ngIf="loggedData.role == 'Super Admin'" routerLink="/department"><a > Department</a></li>
+            <li><a routerLink="/tickets"> Tickets</a></li>
+            <li><a routerLink="/new-ticket"> New-Ticket</a></li>
+        </ul> 
+        <div class="social_media" style="bottom: 13%;"> 
+            <a href="#"> As : {{loggedData.role}}</a> 
+        </div>
+        <div class="social_media" style="bottom: 6%;"> 
+          <a href="#">{{loggedData.emailId}}</a> 
+      </div>
+      <div class="social_media"> 
+        <a (click)="onLogoff()">Log-off</a> 
+    </div>
+    </div>
+    <div class="main_content parent"> 
+        <div class="info">
+            <router-outlet></router-outlet>
+      </div>
+    </div>
+</div>
